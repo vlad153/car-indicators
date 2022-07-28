@@ -248,7 +248,7 @@ test = ["pytest (>=6.2.4,<7.0.0)", "pytest-cov (>=2.12.0,<4.0.0)", "mypy (==0.91
 
 [[package]]
 name = "fastapi-users"
-version = "10.1.3"
+version = "10.1.4"
 description = "Ready-to-use and customizable users management for FastAPI"
 category = "main"
 optional = false
@@ -836,7 +836,7 @@ dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "25c5c464876006628816521f4d738bb2f7de472a202fc5fbdf4def83dff86880"
+content-hash = "fa9c6bf08bc1f2e122b155fd71189c646af8135a036d0a415adc32776d45047d"
 
 [metadata.files]
 aiosqlite = []
