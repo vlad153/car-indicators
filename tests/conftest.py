@@ -6,9 +6,14 @@ from car_indicators.db.base import Base, async_engine
 from fastapi.testclient import TestClient
 from pydantic import BaseModel
 
-from .unit_tests.user_test.user_conf_test import (LoginUser, User,
-                                                  created_user_response,
-                                                  login_user2, user, user2)
+from .unit_tests.user_test.user_conf_test import (
+    LoginUser,
+    User,
+    created_user_response,
+    login_user2,
+    user,
+    user2,
+)
 
 
 # class User(BaseModel):
@@ -29,6 +34,7 @@ from .unit_tests.user_test.user_conf_test import (LoginUser, User,
 # def user2():
 #     return User(email='user@example.com', nickname = 'test_name2')
 
+
 def get_client():
     async def create_all_db():
         async with async_engine.begin() as conn:
@@ -40,15 +46,17 @@ def get_client():
     client = TestClient(app)
     return client
 
-@pytest.fixture(scope='session')
+
+@pytest.fixture(scope="session")
 def client():
     client = get_client()
     yield client
 
+
 # @pytest.fixture(scope='session')
 # def created_user(client, user):
 #     response = client.post(
-#     '/auth/register', 
+#     '/auth/register',
 #     json=user.dict())
 
 #     yield response
@@ -58,10 +66,15 @@ def client():
 #     )
 
 
-@pytest.fixture(params=[
-    pytest.param(('asyncio', {'use_uvloop': True}), id='asyncio+uvloop'),
-    pytest.param(('asyncio', {'use_uvloop': False}), id='asyncio'),
-    pytest.param(('trio', {'restrict_keyboard_interrupt_to_checkpoints': True}), id='trio')
-], scope='session')
+@pytest.fixture(
+    params=[
+        pytest.param(("asyncio", {"use_uvloop": True}), id="asyncio+uvloop"),
+        pytest.param(("asyncio", {"use_uvloop": False}), id="asyncio"),
+        pytest.param(
+            ("trio", {"restrict_keyboard_interrupt_to_checkpoints": True}), id="trio"
+        ),
+    ],
+    scope="session",
+)
 def anyio_backend(request):
     return request.param

@@ -9,23 +9,18 @@ context = ssl.create_default_context()
 settings = Settings()
 
 
-def send_email_service(receiver_email: str , message: str):
+def send_email_service(receiver_email: str, message: str) -> None:
     with smtplib.SMTP_SSL(
-                settings.smtp_address, 
-                settings.smtp_port, 
-                context=context
-            ) as server:
+        settings.smtp_address, settings.smtp_port, context=context
+    ) as server:
         server.login(settings.smtp_email, settings.smtp_password)
 
         server.sendmail(settings.smtp_email, receiver_email, message)
 
+
 def create_message(
-        subject: str,
-        sender_email: str,
-        receiver_email: str,
-        text: str,
-        html: str = None
-    ) -> MIMEMultipart:
+    subject: str, sender_email: str, receiver_email: str, text: str, html: str = None
+) -> MIMEMultipart:
 
     message = MIMEMultipart()
     message["Subject"] = subject

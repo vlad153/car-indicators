@@ -1,3 +1,4 @@
+from typing import Dict
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
@@ -26,6 +27,8 @@ app = FastAPI()
 # )
 
 app.include_router(auth_user_router)
-@app.get('/')
-async def root():
-    return {'message': 'success'}
+
+
+@app.get("/")
+async def root() -> Dict[str, str]:
+    return {"message": "success"}
